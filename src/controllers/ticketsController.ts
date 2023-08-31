@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ZendeskTickets from "../models/ZendeskTickets";
 import { handleServerError } from "../utils/response";
+import KoreApi from "../models/KoreApi";
 
 interface TicketIdRequest {
     ticketID: string;
@@ -9,13 +10,18 @@ interface TicketIdRequest {
 const getZendeskByTicket = async (req: Request, res: Response) => {
 
     const zendeskApi = new ZendeskTickets();
+    const koreIntent = new KoreApi();
+
     try{
+        
         const { ticketID } = req.body as TicketIdRequest;
         
-        const data = await zendeskApi.getDataTickets(ticketID);
+        const description = await zendeskApi.postDataTickets(ticketID);
+
+        const data = await koreIntent.postDataFindIntent(description);
           
         res.json({
-            message: 'Get Data successfully',
+            message: 'Data successfully',
             data
         });
         
