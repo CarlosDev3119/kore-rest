@@ -12,7 +12,7 @@ export const TicketSchema: JSONSchemaType<TicketAttributes> = {
             minLength: 6,
             maxLength: 6,
             pattern: "^[0-9]+$"
-        }
+        },
     },
     required: ["ticketID"]
 

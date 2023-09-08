@@ -3,7 +3,6 @@ import { Application } from "express";
 
 //class server interface
 
-
 type pathRoute = {
     [key: string]: any
 }

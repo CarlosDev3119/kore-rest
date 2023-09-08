@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import controlApi from "../api/config";
-import { ApiResponse, Response } from "../interfaces/koreIntentInterface";
+import { ApiResponse } from "../interfaces/koreIntentInterface";
 
 const baseURL= 'https://bots.kore.ai/api/v1.1/rest/bot/st-9f0f6a67-ac59-525c-8be0-d1ad2387ff30/findIntent';
 
