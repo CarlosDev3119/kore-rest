@@ -39,7 +39,7 @@ const getDataZendeskByNumber = async (req: Request, res: Response) => {
    
     try{
         const data = await zendeskApi.getDataByNumber(number);
-        if(data.length === 0) return res.json({ data: [], message: 'Data empty'})
+        if(data.length === 0) return res.status(404).json({ data: [], message: 'Data empty'})
         return res.json({
             data,
             message: 'Get Data successfully'
