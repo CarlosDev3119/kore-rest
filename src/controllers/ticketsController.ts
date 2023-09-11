@@ -33,45 +33,27 @@ const getZendeskByTicket = async (req: Request, res: Response) => {
 
 }
 
-const getRutaPanamericano = (req: Request, res: Response) => {
-    let data = [
-        {
-            "ruta": 14,
-            "zonas": [
-                "Mixcoac",
-                "Coyoacan (Miguel Angel)",
-                "Insurgentes"
-            ],
-            "fechasOriginales": "lunes, miércoles y viernes",
-            "id": "1"
-        },
-        {
-            "ruta": 15,
-            "zonas": [
-                "Pilares",
-                "Narvarte"
-            ],
-            "fechasOriginales": "Martes y viernes",
-            "id": "2"
-        },
-        {
-            "ruta": 16,
-            "zonas": [
-                "Miguel Angel de Quevedo"
-            ],
-            "fechasOriginales": "viernes y sábado",
-            "id": "3"
-        }
-    ]
+const getDataZendeskByNumber = async (req: Request, res: Response) => {
+    const zendeskApi = new ZendeskTickets();
+    const { number } = req.params;
+   
+    try{
+        const data = await zendeskApi.getDataByNumber(number);
+        if(data.length === 0) return res.json({ data: [], message: 'Data empty'})
+        return res.json({
+            data,
+            message: 'Get Data successfully'
+        })
+    }catch(error){
 
-    return res.json(
-        data
-    )
+    }
+
+    
 }
 
 export {
     getZendeskByTicket,
-    getRutaPanamericano
+    getDataZendeskByNumber
 }
 
 

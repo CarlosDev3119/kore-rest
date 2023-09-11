@@ -32,6 +32,20 @@ class ZendeskTickets {
         return description;
     }
 
+    async getDataByNumber( number: string){
+        this.api = controlApi(`https://soyueno1694014071.zendesk.com/api/v2`)
+
+        const resp = await this.api.get(`/search.json?query=phone:"+${number}"&include=users(identities)`, {
+            headers: {
+                Authorization: `Basic c29saWNpdGFudGUuYXBpQHVlbm8uY29tLnB5L3Rva2VuOndRTFhLWGYyNXZwTURSS1liS3JYMGVlYjJETmc2ODNuMHBKUDBiSTQ=` 
+            }
+        });
+        
+        // console.log(resp.data.results);
+        // const { results } = resp.data;
+        return resp.data.results;
+    }
+
 }
 
 export default ZendeskTickets;
