@@ -1,0 +1,2 @@
+export { getDataPanamById } from "./panamericanController";
+

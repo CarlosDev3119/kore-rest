@@ -3,7 +3,9 @@ import cors from 'cors';
 
 
 import { ServerProps, pathRoute } from '../interfaces/interfaces';
-import { ticketRouter } from '../routes/ticket.routes';
+import { panamericanRouter, ticketRouter } from '../routes';
+
+
 
 class Server implements ServerProps{
 
@@ -15,7 +17,9 @@ class Server implements ServerProps{
         this.app = express();
         this.port = process.env.PORT || 3000
         this.paths = {
-            tickets: '/sforcekore/tickets'
+            tickets: '/sforcekore/tickets',
+            panamerican: '/sforcekore/panamerican',
+
         }
         this.middlewares();
 
@@ -33,6 +37,8 @@ class Server implements ServerProps{
 
     routes(){
         this.app.use( this.paths.tickets, ticketRouter );
+        this.app.use( this.paths.panamerican, panamericanRouter );
+
     }
 
     listen(){
